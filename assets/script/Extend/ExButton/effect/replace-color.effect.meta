@@ -1,0 +1,17 @@
+{
+  "ver": "1.0.23",
+  "uuid": "ad48ddb2-ba58-4430-993b-f12605fa6087",
+  "compiledShaders": [
+    {
+      "glsl1": {
+        "vert": "\nprecision highp float;\nuniform mat4 cc_matViewProj;\n\nattribute vec3 a_position;\nattribute vec2 a_uv0;\nvarying vec2 v_uv0;\nattribute vec4 a_color;\nvarying vec4 v_color;\nvoid main () {\n  gl_Position = cc_matViewProj * vec4(a_position, 1);\n  v_uv0 = a_uv0;v_color = a_color;\n}\n",
+        "frag": "\nprecision highp float;\n \nuniform sampler2D texture;\nvarying vec4 v_color;\nvarying vec2 v_uv0;\nuniform vec4 referColor;\nuniform vec4 rangeColor;\nuniform vec4 replaceColor;\nvec4 color_replace(vec4 color)\n{\n  if(referColor.r <= color.r && color.r < (referColor.r + rangeColor.r)){\n    if(referColor.g <= color.g && color.g < (referColor.g + rangeColor.g)){\n      if(referColor.b <= color.b && color.b < (referColor.b + rangeColor.b)){\n      if(referColor.a <= color.a && color.a < (referColor.a + rangeColor.a)){\n        color = vec4(replaceColor.rgb,color.a);\n      }\n      }\n    }\n  }\n  return color;\n}\n\nvoid main () {\n  vec4 color = texture2D(texture, v_uv0);\n  color*=v_color;\n  gl_FragColor = color_replace(color);\n}\n \n"
+      },
+      "glsl3": {
+        "vert": "\nprecision highp float;\nuniform CCGlobal {\n  vec4 cc_time;\n\n  vec4 cc_screenSize;\n\n  vec4 cc_screenScale;\n\n  vec4 cc_nativeSize;\n\n  mat4 cc_matView;\n  mat4 cc_matViewInv;\n  mat4 cc_matProj;\n  mat4 cc_matProjInv;\n  mat4 cc_matViewProj;\n  mat4 cc_matViewProjInv;\n  vec4 cc_cameraPos;\n\n  vec4 cc_exposure;\n\n  vec4 cc_mainLitDir;\n\n  vec4 cc_mainLitColor;\n\n  vec4 cc_ambientSky;\n  vec4 cc_ambientGround;\n};\nuniform CCLocal {\n  mat4 cc_matWorld;\n  mat4 cc_matWorldIT;\n};\n\nin vec3 a_position;\nin vec2 a_uv0;\nout vec2 v_uv0;\nin vec4 a_color;\nout vec4 v_color;\nvoid main () {\n  gl_Position = cc_matViewProj * vec4(a_position, 1);\n  v_uv0 = a_uv0;v_color = a_color;\n}\n",
+        "frag": "\nprecision highp float;\n \nuniform sampler2D texture;\nin vec4 v_color;\nin vec2 v_uv0;\nuniform Replace{\n vec4 referColor;\n vec4 rangeColor;\n vec4 replaceColor;\n}\nvec4 color_replace(vec4 color)\n{\n  if(referColor.r <= color.r && color.r < (referColor.r + rangeColor.r)){\n    if(referColor.g <= color.g && color.g < (referColor.g + rangeColor.g)){\n      if(referColor.b <= color.b && color.b < (referColor.b + rangeColor.b)){\n      if(referColor.a <= color.a && color.a < (referColor.a + rangeColor.a)){\n        color = vec4(replaceColor.rgb,color.a);\n      }\n      }\n    }\n  }\n  return color;\n}\n\nvoid main () {\n  vec4 color = texture2D(texture, v_uv0);\n  color*=v_color;\n  gl_FragColor = color_replace(color);\n}\n \n"
+      }
+    }
+  ],
+  "subMetas": {}
+}

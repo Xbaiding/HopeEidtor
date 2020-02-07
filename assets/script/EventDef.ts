@@ -1,0 +1,36 @@
+
+enum EventDef {
+
+    EVENT_DELFILE_CONFIRM,    //删除确认
+    EVENT_NEWMAP_CONFIRM,     //新建确认
+
+    EVENT_CAPTURE_SIZE, 
+    EVENT_SET_DEFGROUND,
+    EVENT_SCALE_MAP,
+    EVENT_HIDE_FRAME,
+    EVENT_SET_MINIMAP,
+    EVENT_MOVE_MAP,
+
+    EVENT_SELECT_TYPE,      //选择物品类型
+    EVENT_SELECT_ITEM,      //选择物品
+    
+    EVENT_SELECT_MAPPOS,
+    EVENT_CLICK_OPERATE,
+    EVENT_MOME_ITEM_ON,
+    EVENT_MOME_ITEM_END,
+   
+    EVENT_SHOW_PROMPT,      //显示弹框提示
+    EVENT_HIDE_PROMPT,
+    EVENT_SHOW_SIZEVIEW,    //显示设置大小
+    EVENT_SHOW_CUSTOM,      //显示自定义
+    EVENT_ADD_CUSTOM,       //添加自定义
+    EVENT_DEL_CUSTOM,
+    EVENT_ALTER_CUSTOM,     //修改自定义
+
+    EVENT_RECORD_OPERATE,
+
+    EVENT_SAVE_FILE,
+    EVENT_SAVE_IMAGE
+}
+
+export default EventDef;

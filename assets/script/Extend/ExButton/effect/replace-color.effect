@@ -1,0 +1,68 @@
+// Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.  
+CCEffect %{
+  techniques:
+  - passes:
+    - vert: vs
+      frag: fs
+      blendState:
+        targets:
+        - blend: true
+      rasterizerState:
+        cullMode: none
+      properties:
+        texture: { value: white }
+        referColor: { value: [1,1,1,1], inspector : { type : color } }
+        rangeColor: { value: [1,1,1,1], inspector : { type : color } }
+        replaceColor: { value: [1,1,1,1], inspector : { type : color } }
+}%
+
+CCProgram vs %{
+  precision highp float;
+  #include <cc-global>
+  #include <cc-local>
+  in vec3 a_position;
+  in vec2 a_uv0;
+  out vec2 v_uv0;
+  in vec4 a_color;
+  out vec4 v_color;
+  void main () {
+    gl_Position = cc_matViewProj * vec4(a_position, 1);
+    v_uv0 = a_uv0;v_color = a_color;
+  }
+}%
+ 
+CCProgram fs %{
+ 
+precision highp float;
+ 
+uniform sampler2D texture;
+in vec4 v_color;
+in vec2 v_uv0;
+uniform Replace{
+ vec4 referColor;
+ vec4 rangeColor;
+ vec4 replaceColor;
+}
+vec4 color_replace(vec4 color)
+{
+	if(referColor.r <= color.r && color.r < (referColor.r + rangeColor.r)){
+		if(referColor.g <= color.g && color.g < (referColor.g + rangeColor.g)){
+			if(referColor.b <= color.b && color.b < (referColor.b + rangeColor.b)){
+			if(referColor.a <= color.a && color.a < (referColor.a + rangeColor.a)){
+				color = vec4(replaceColor.rgb,color.a);
+			}
+			}
+		}
+	}
+	return color;
+}
+
+void main () {
+  vec4 color = texture2D(texture, v_uv0);
+  color*=v_color;
+  gl_FragColor = color_replace(color);
+}
+ 
+}%
+
+ 

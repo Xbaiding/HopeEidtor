@@ -1,0 +1,63 @@
+{
+  "android-instant": {
+    "REMOTE_SERVER_ROOT": "",
+    "host": "",
+    "packageName": "org.hopeeidtor.xiaobai",
+    "pathPattern": "",
+    "recordPath": "",
+    "scheme": "https",
+    "skipRecord": false
+  },
+  "appBundle": false,
+  "baidugame": {
+    "REMOTE_SERVER_ROOT": "",
+    "appid": "testappid",
+    "orientation": "portrait",
+    "subContext": ""
+  },
+  "encryptJs": false,
+  "excludeScenes": [
+    "55e33111-8c23-4823-af32-b76ec10c4300"
+  ],
+  "fb-instant-games": {},
+  "includeSDKBox": false,
+  "inlineSpriteFrames": true,
+  "inlineSpriteFrames_native": false,
+  "md5Cache": true,
+  "mergeStartScene": false,
+  "optimizeHotUpdate": false,
+  "orientation": {
+    "landscapeLeft": false,
+    "landscapeRight": false,
+    "portrait": true,
+    "upsideDown": false
+  },
+  "packageName": "org.hopeeidtor.xiaobai",
+  "qqplay": {
+    "REMOTE_SERVER_ROOT": "",
+    "orientation": "portrait",
+    "zip": false
+  },
+  "startScene": "f1c296c0-a649-40d0-8014-5c8f5861b437",
+  "title": "HopeEditor",
+  "webOrientation": "portrait",
+  "wechatgame": {
+    "REMOTE_SERVER_ROOT": "",
+    "appid": "wx14320c89c4c7710a",
+    "orientation": "portrait",
+    "separate_engine": false,
+    "subContext": ""
+  },
+  "xxteaKey": "3c815277-a039-4f",
+  "zipCompressJs": true,
+  "android": {
+    "packageName": "org.hopeeidtor.xiaobai"
+  },
+  "ios": {
+    "packageName": "org.hopeeidtor.xiaobai"
+  },
+  "mac": {
+    "packageName": "org.hopeeidtor.xiaobai"
+  },
+  "win32": {}
+}

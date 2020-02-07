@@ -1,0 +1,94 @@
+{
+  "assets-sort-type": "name",
+  "collision-matrix": [
+    [
+      true
+    ],
+    [
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  ],
+  "design-resolution-height": 1460,
+  "design-resolution-width": 960,
+  "excluded-modules": [
+    "ParticleSystem",
+    "TiledMap",
+    "Spine Skeleton",
+    "DragonBones",
+    "RichText",
+    "MotionStreak",
+    "PageViewIndicator",
+    "VideoPlayer",
+    "WebView",
+    "Collider",
+    "Physics",
+    "StudioComponent",
+    "Intersection",
+    "Geom Utils",
+    "3D",
+    "3D Primitive"
+  ],
+  "facebook": {
+    "appID": "",
+    "audience": {
+      "enable": false
+    },
+    "enable": false,
+    "live": {
+      "enable": false
+    }
+  },
+  "fit-height": true,
+  "fit-width": false,
+  "group-list": [
+    "default",
+    "Map",
+    "MapFrame",
+    "UI"
+  ],
+  "last-module-event-record-time": 1580560427063,
+  "simulator-orientation": true,
+  "simulator-resolution": {
+    "height": 1460,
+    "width": 960
+  },
+  "use-customize-simulator": true,
+  "use-project-simulator-setting": true,
+  "start-scene": "55e33111-8c23-4823-af32-b76ec10c4300"
+}
