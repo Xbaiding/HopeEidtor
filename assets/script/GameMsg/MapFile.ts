@@ -18,24 +18,33 @@ class TiledData {
     x: number;          //Int8 1Byte
     y: number;          //Int8 1Byte
     ground: number;     //Int8 1Byte
-    itemID: number[];   //Int32 4Byte
+    itemID: number[];   //Int16X2 4Byte
     constructor() {
         this.x = -1;
         this.y = -1;
         this.ground = -1;
         this.itemID = [0, 0];
     }
+
+    //用一个字节去标记是否有道具和背景
+    //高位为标记 低位用于储存背景数值
     get flag() {
         let flag = 0;
+
+        //标记是否有道具1
         if (this.itemID[0] != 0) {
             flag |= HasFlag.ITEM1;
         }
+
+        //标记是否有道具2
         if (this.itemID[1] != 0) {
             flag |= HasFlag.ITEM2;
         }
+
+        //标记是否有背景
         if (this.ground != -1) {
             flag |= HasFlag.BG;
-            flag += this.ground;
+            flag += this.ground; //背景数值
         }
         return flag;
     }
@@ -45,13 +54,13 @@ class TiledData {
 }
 
 
-//地图数据流
+//地图数据存储读取数据流
 export class MapBuffer {
-    private major_ver: number = 1;       //大版本
-    private minor_ver: number = 4;       //小版本
-    private name: string = '';
-    private width: number = 0;
-    private height: number = 0;
+    private major_ver: number = 1;  //大版本
+    private minor_ver: number = 4;  //小版本
+    private name: string = '';      //名字 
+    private width: number = 0;      //宽度
+    private height: number = 0;     //高度
     constructor(name: string, width: number, height: number, defGround: number) {
         this.name = name;
         this.width = width;
@@ -59,7 +68,6 @@ export class MapBuffer {
         this.defGround = defGround;
         this.data = [];
     }
-
     public clear() {
         this.data.length = 0;
     }
@@ -106,12 +114,14 @@ export class MapBuffer {
             buffer[pos] = itemdata.x; ++pos;
             buffer[pos] = itemdata.y; ++pos;
             if (itemdata.itemID[0] != 0) {
+                //存入道具1
                 hight = itemdata.itemID[0] >> 8;
                 low = itemdata.itemID[0] & 0xff;
                 buffer[pos] = hight; ++pos;
                 buffer[pos] = low; ++pos;
             }
             if (itemdata.itemID[1] != 0) {
+                //存入道具2
                 hight = itemdata.itemID[1] >> 8;
                 low = itemdata.itemID[1] & 0xff;
                 buffer[pos] = hight; ++pos;
@@ -166,6 +176,7 @@ export class MapBuffer {
             if (x == null || y == null ) break;
             let itemdata = this.getData(x, y);
             if (flag & HasFlag.BG) {
+                //获得背景数值
                 itemdata.ground = (flag & 0xf);
             }
             if (flag & HasFlag.ITEM1) {
